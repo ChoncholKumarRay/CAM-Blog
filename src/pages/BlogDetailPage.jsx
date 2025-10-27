@@ -1,6 +1,5 @@
-import React from "react";
 import { useParams } from "react-router-dom";
-import { useBlog } from "../hooks/useBlog";
+import { useDetailedBlog } from "../hooks/useDetailedBlog";
 import BlogHeader from "../components/BlogHeader";
 import BlogMeta from "../components/BlogMeta";
 import BlogImage from "../components/BlogImage";
@@ -9,7 +8,7 @@ import CommentSection from "../components/CommentSection";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
-  const { data: blog, isLoading, isError, error } = useBlog(id);
+  const { data: blog, isLoading, isError, error } = useDetailedBlog(id);
 
   if (isLoading) {
     return (

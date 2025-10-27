@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchDetailedBlog } from "../api/blogApi";
 
-export const useBlog = (id) => {
+export const useDetailedBlog = (id) => {
   return useQuery({
     queryKey: ["blog", id],
     queryFn: () => fetchDetailedBlog(id),
