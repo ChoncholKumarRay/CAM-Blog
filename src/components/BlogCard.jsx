@@ -27,9 +27,9 @@ const BlogCard = ({ blog }) => {
   );
 
   return (
-    <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#234C6A] flex flex-col md:flex-row">
+    <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#234C6A] flex flex-col items-center md:flex-row">
       {/* Featured Image (Left Side) */}
-      <div className="md:w-1/2 w-full h-64 overflow-hidden items-center justify-center">
+      <div className="md:w-1/2 w-full h-64 overflow-hidden flex items-center justify-center">
         <img
           src={imageSrc}
           alt={blog.title}
