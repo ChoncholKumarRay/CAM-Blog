@@ -6,5 +6,5 @@ export default {
       bangla: ["'Noto Sans Bengali'", "sans-serif"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

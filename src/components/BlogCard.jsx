@@ -27,7 +27,7 @@ const BlogCard = ({ blog }) => {
   );
 
   return (
-    <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#234C6A] flex flex-col items-center md:flex-row">
+    <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#234C6A] flex flex-col md:flex-row">
       {/* Featured Image (Left Side) */}
       <div className="md:w-1/2 w-full h-64 overflow-hidden flex items-center justify-center">
         <img
@@ -48,7 +48,7 @@ const BlogCard = ({ blog }) => {
 
           {/* Title */}
           <h2
-            className="text-2xl font-bold text-gray-100 mb-3 hover:text-blue-400 transition-colors cursor-pointer leading-tight"
+            className="text-2xl font-bold text-gray-100 mb-3 hover:text-blue-400 transition-colors cursor-pointer leading-tight line-clamp-2"
             onClick={handleReadMore}
           >
             {blog.title}
@@ -56,7 +56,7 @@ const BlogCard = ({ blog }) => {
 
           {/* Excerpt (HTML render) */}
           <div
-            className="text-gray-300 mb-4 leading-relaxed line-clamp-3 prose prose-invert max-w-none"
+            className="text-gray-300 mb-4 leading-relaxed prose prose-invert max-w-none line-clamp-2"
             dangerouslySetInnerHTML={{ __html: blog.excerpt }}
           />
         </div>
