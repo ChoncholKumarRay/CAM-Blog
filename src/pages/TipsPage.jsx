@@ -1,5 +1,3 @@
-import React from "react";
-
 const TipsPage = () => {
   return (
     <div
@@ -10,14 +8,19 @@ const TipsPage = () => {
       }}
     >
       <div className="w-full max-w-3xl bg-gray-800/80 rounded-xl p-8 shadow-lg backdrop-blur-sm text-white space-y-6">
-        <h1 className="text-4xl font-bold mb-6 text-center">
+        <h1
+          className="text-3xl font-bold mb-6 text-blue-400 text-center"
+          style={{
+            fontFamily: "'Roboto', 'Roboto', sans-serif",
+          }}
+        >
           Blog Writing Tips
         </h1>
 
         <ol className="list-decimal list-inside space-y-4 text-gray-200 leading-relaxed text-lg">
           <li>
-            প্রথমে আপনার আর্টিকেলের জন্য একটা মজার শিরোনাম(Title) খুঁজে বের করতে
-            হবে। মজাদার শিরোনাম সবসময় পাঠকদের মনোযোগ আকর্ষণে ভূমিকা রাখে।
+            প্রথমে আপনার আর্টিকেলের জন্য একটা মজার শিরোনাম (Title) খুঁজে বের
+            করতে হবে। মজাদার শিরোনাম সবসময় পাঠকদের মনোযোগ আকর্ষণে ভূমিকা রাখে।
           </li>
           <li>
             শুরুটা হতে হবে আকর্ষণীয় যেটা পাঠকদের বাধ্য করবে বাকিটা পড়তে। কোনকিছু
@@ -86,12 +89,26 @@ const TipsPage = () => {
           </li>
         </ol>
 
+        {/* Author Credit Section */}
+        <div className="mt-8 border-gray-700 text-gray-400">
+          <p className="text-l font-medium">Tips compiled by</p>
+          <p className="text-l font-semibold">AR Raqeeb</p>
+          <p className="text-sm text-gray-400">
+            Freelance Blogger & Former Regional Head, Barisal Division, CAM-SUST
+          </p>
+        </div>
+
         {/* Workshop Video Section */}
         <div className="pt-8 border-t border-gray-700">
-          <h2 className="text-2xl font-semibold text-center mb-4">
+          <h2
+            className="text-2xl font-semibold text-center mb-4"
+            style={{
+              fontFamily: "'Roboto', 'Roboto', sans-serif",
+            }}
+          >
             Here is our online workshop on <br />
             <span className="text-blue-400">
-              Scientific Writing by Ucchash Toushif
+              Scientific Writing by Uchsash Tousif
             </span>
           </h2>
 
@@ -101,7 +118,6 @@ const TipsPage = () => {
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/Ra5vf5HGDZo?si=NU2vYxDnIgz4OeBK"
                 title="Workshop on Scientific Writing"
-                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen

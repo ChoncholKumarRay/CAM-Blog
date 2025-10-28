@@ -24,7 +24,7 @@ const ContributePage = () => {
   };
 
   return (
-    <div className="relative z-10 container mx-auto px-6 pt-20 py-12 max-w-3xl">
+    <div className="relative z-10 container mx-auto px-6 pt-24 py-12 max-w-3xl">
       <h1 className="text-4xl font-bold text-white mb-4">
         Contribute to Our Blog
       </h1>
