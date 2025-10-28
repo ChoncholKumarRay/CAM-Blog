@@ -12,7 +12,7 @@ const BlogListControls = ({
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <div className="flex justify-between items-center mb-6">
+    <div className="flex justify-between items-center mb-2 mt-16">
       <div className="text-gray-300 text-sm">
         {totalItems > 0
           ? `Showing ${startItem} - ${endItem} of ${totalItems} blogs`
@@ -21,7 +21,7 @@ const BlogListControls = ({
       <button
         onClick={onRefresh}
         disabled={isRefreshing}
-        className="flex items-center gap-2 p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center gap-2 p-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         title="Refresh blogs"
       >
         <RefreshCw

@@ -39,16 +39,16 @@ const BlogCard = ({ blog }) => {
       </div>
 
       {/* Content (Right Side) */}
-      <div className="md:w-1/2 w-full p-6 flex flex-col justify-between">
+      <div className="md:w-1/2 w-full p-6 pt-4 flex flex-col justify-between">
         <div>
           {/* Category */}
-          <span className="inline-block px-3 py-1 text-xs font-semibold text-blue-400 bg-blue-950 rounded mb-3 uppercase tracking-wider">
+          <span className="inline-block  text-xs font-semibold text-blue-400 pt-0 rounded mb-3 uppercase tracking-wider">
             {blog.category}
           </span>
 
           {/* Title */}
           <h2
-            className="text-2xl font-bold text-gray-100 mb-3 hover:text-blue-400 transition-colors cursor-pointer leading-tight line-clamp-2"
+            className="text-2xl font-bold text-gray-100 mb-3 hover:text-blue-500 transition-colors cursor-pointer leading-tight line-clamp-2"
             onClick={handleReadMore}
           >
             {blog.title}

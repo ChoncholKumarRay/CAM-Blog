@@ -33,3 +33,7 @@ createRoot(document.getElementById("root")).render(
     </PersistQueryClientProvider>
   </React.StrictMode>
 );
+
+// Remove pre-root shell once React is ready
+const preRoot = document.getElementById("pre-root");
+if (preRoot) preRoot.remove();
