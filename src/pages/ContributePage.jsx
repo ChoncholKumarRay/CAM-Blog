@@ -24,13 +24,27 @@ const ContributePage = () => {
   };
 
   return (
-    <div className="relative z-10 container mx-auto px-6 pt-24 py-12 max-w-3xl">
-      <h1 className="text-4xl font-bold text-white mb-4">
+    <div className="relative z-10 container mx-auto px-6 pt-28 py-12 max-w-3xl">
+      <h1 className="text-4xl font-bold text-white mb-4 text-center">
         Contribute to Our Blog
       </h1>
-      <p className="text-gray-400 mb-8">
-        Share your knowledge and insights with the CAM-SUST community. Submit
-        your article below.
+      <p className="text-gray-400 mb-8 text-center">
+        Share your knowledge and insights with the CAM-SUST community. Please
+        read{" "}
+        <a
+          href="/tips"
+          className="text-blue-400 hover:text-blue-500 hover:underline transition-colors"
+        >
+          tips
+        </a>{" "}
+        and{" "}
+        <a
+          href="/instruction"
+          className="text-blue-400 hover:text-blue-500 hover:underline transition-colors"
+        >
+          instructions
+        </a>{" "}
+        before submitting your article.
       </p>
 
       <form
@@ -65,7 +79,7 @@ const ContributePage = () => {
 
         <div>
           <label className="block text-white mb-2 font-medium">
-            Article Title
+            Blog Title
           </label>
           <input
             type="text"
@@ -74,46 +88,40 @@ const ContributePage = () => {
             onChange={handleChange}
             required
             className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-            placeholder="Your Amazing Article Title"
+            placeholder="Your amzing title"
           />
         </div>
-
         <div>
           <label className="block text-white mb-2 font-medium">Category</label>
-          <select
-            name="category"
+          <input
+            type="text"
+            name="title"
             value={formData.category}
             onChange={handleChange}
             required
             className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-          >
-            <option value="">Select a category</option>
-            <option value="Technology">Technology</option>
-            <option value="Education">Education</option>
-            <option value="Lifestyle">Lifestyle</option>
-            <option value="Programming">Programming</option>
-            <option value="Health">Health</option>
-          </select>
+            placeholder="Write the category of your blog"
+          />
         </div>
 
         <div>
           <label className="block text-white mb-2 font-medium">
-            Article Content
+            Blog Content
           </label>
           <textarea
             name="content"
             value={formData.content}
             onChange={handleChange}
             required
-            rows="10"
+            rows="4"
             className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 resize-none"
-            placeholder="Write your article here..."
+            placeholder="Paste the gogle docs link of you article. "
           />
         </div>
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+          className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-indigo-700 transition-all duration-300"
         >
           Submit Article
         </button>
