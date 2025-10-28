@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useComments } from "../../hooks/useComments";
 import { useCommentSubmission } from "../../hooks/useCommentSubmission";
 import CommentList from "../comment/CommentList";
@@ -28,7 +28,8 @@ const CommentSection = ({ blogId }) => {
     commentsPerPage,
     () => {
       setCurrentPage(1);
-      setCommentData({ name: "", email: "", text: "" });
+      // Only clear the comment text, keep name and email
+      setCommentData((prev) => ({ ...prev, text: "" }));
       setSubmitSuccess(true);
       setSubmitError(null);
       setTimeout(() => setSubmitSuccess(false), 3000);
@@ -43,6 +44,15 @@ const CommentSection = ({ blogId }) => {
     setSubmitError(null);
     setSubmitSuccess(false);
   };
+
+  // Handle loading user data from localStorage
+  const handleUserDataLoad = useCallback((userData) => {
+    setCommentData((prev) => ({
+      ...prev,
+      name: userData.name || prev.name,
+      email: userData.email || prev.email,
+    }));
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,6 +107,7 @@ const CommentSection = ({ blogId }) => {
         commentData={commentData}
         onChange={handleChange}
         onSubmit={handleSubmit}
+        onUserDataLoad={handleUserDataLoad}
         isSubmitting={commentMutation.isLoading}
         submitError={submitError}
         submitSuccess={submitSuccess}

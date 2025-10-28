@@ -1,4 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import {
+  getUserFromStorage,
+  saveUserToStorage,
+  removeUserFromStorage,
+  hasStoredUser,
+} from "../../utils/localStorage";
 
 const CommentForm = ({
   commentData,
@@ -7,7 +13,45 @@ const CommentForm = ({
   isSubmitting,
   submitError,
   submitSuccess,
+  onUserDataLoad,
 }) => {
+  const [rememberMe, setRememberMe] = useState(false);
+
+  // Load saved user data on mount
+  useEffect(() => {
+    if (hasStoredUser()) {
+      const savedUser = getUserFromStorage();
+      if (savedUser.name || savedUser.email) {
+        setRememberMe(true);
+        // Notify parent component to update form data
+        onUserDataLoad?.(savedUser);
+      }
+    }
+  }, [onUserDataLoad]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Save or remove user data based on checkbox
+    if (rememberMe) {
+      saveUserToStorage(commentData.name, commentData.email);
+    } else {
+      removeUserFromStorage();
+    }
+
+    onSubmit(e);
+  };
+
+  const handleRememberMeChange = (e) => {
+    const checked = e.target.checked;
+    setRememberMe(checked);
+
+    // If unchecking, remove from storage immediately
+    if (!checked) {
+      removeUserFromStorage();
+    }
+  };
+
   return (
     <div
       className="mt-8"
@@ -30,9 +74,12 @@ const CommentForm = ({
       )}
 
       <form
-        onSubmit={onSubmit}
-        className="space-y-4 bg-gray-900/80 p-6 rounded-lg"
+        onSubmit={handleSubmit}
+        className="space-y-4 bg-gray-900/80 pt-4 p-6 rounded-lg"
       >
+        <label className="text-sm text-gray-300 cursor-pointer select-none">
+          Please fill up all the fields to comment. Your email won't be public.
+        </label>
         <input
           type="text"
           name="name"
@@ -64,6 +111,24 @@ const CommentForm = ({
           disabled={isSubmitting}
         />
         <input type="text" name="website" style={{ display: "none" }} />
+
+        {/* Remember Me Checkbox */}
+        <div className="flex items-center space-x-2">
+          <input
+            type="checkbox"
+            id="rememberMe"
+            checked={rememberMe}
+            onChange={handleRememberMeChange}
+            disabled={isSubmitting}
+            className="w-4 h-4 text-blue-600 bg-gray-800 border-gray-700 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer"
+          />
+          <label
+            htmlFor="rememberMe"
+            className="text-sm text-gray-300 cursor-pointer select-none"
+          >
+            Remember my name and email for next time
+          </label>
+        </div>
 
         <button
           type="submit"
