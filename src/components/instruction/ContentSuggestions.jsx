@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import categories from "../data/contentCategories";
+import categories from "../../data/contentCategories";
 
 const ContentSuggestions = () => {
   const [openCategory, setOpenCategory] = useState(null);

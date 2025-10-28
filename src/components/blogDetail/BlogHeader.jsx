@@ -1,4 +1,4 @@
-import { getFontFamily } from "../utils/textUtils";
+import { getFontFamily } from "../../utils/textUtils";
 
 const BlogHeader = ({ title }) => {
   return (

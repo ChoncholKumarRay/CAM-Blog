@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useDetailedBlog } from "../hooks/useDetailedBlog";
-import BlogHeader from "../components/BlogHeader";
-import BlogMeta from "../components/BlogMeta";
-import BlogImage from "../components/BlogImage";
-import BlogContent from "../components/BlogContent";
-import CommentSection from "../components/CommentSection";
+import BlogHeader from "../components/blogDetail/BlogHeader";
+import BlogMeta from "../components/blogDetail/BlogMeta";
+import BlogImage from "../components/blogDetail/BlogImage";
+import BlogContent from "../components/blogDetail/BlogContent";
+import CommentSection from "../components/blogDetail/CommentSection";
 
 const BlogDetailPage = () => {
   const { id } = useParams();

@@ -1,6 +1,6 @@
 import { User2 } from "lucide-react";
-import { getFontFamily } from "../utils/textUtils";
-import { formatCommentDate } from "../utils/dateFormatters";
+import { getFontFamily } from "../../utils/textUtils";
+import { formatCommentDate } from "../../utils/dateFormatters";
 
 const CommentItem = ({ comment }) => {
   return (

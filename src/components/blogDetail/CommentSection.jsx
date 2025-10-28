@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useComments } from "../hooks/useComments";
-import { useCommentSubmission } from "../hooks/useCommentSubmission";
-import CommentList from "./CommentList";
-import CommentPagination from "./CommentPagination";
-import CommentForm from "./CommentForm";
+import { useComments } from "../../hooks/useComments";
+import { useCommentSubmission } from "../../hooks/useCommentSubmission";
+import CommentList from "../comment/CommentList";
+import CommentPagination from "../comment/CommentPagination";
+import CommentForm from "../comment/CommentForm";
 
 const CommentSection = ({ blogId }) => {
   const commentsPerPage = 5;

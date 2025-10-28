@@ -1,5 +1,5 @@
-import WritingInstruction from "../components/WritingInstruction";
-import ContentSuggestions from "../components/ContentSuggestions";
+import WritingInstruction from "../components/instruction/WritingInstruction";
+import ContentSuggestions from "../components/instruction/ContentSuggestions";
 
 const InstructionPage = () => {
   return (

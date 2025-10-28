@@ -1,5 +1,5 @@
 import { Calendar, MessageCircle, Tag } from "lucide-react";
-import { formatDate } from "../utils/dateFormatters";
+import { formatDate } from "../../utils/dateFormatters";
 
 const BlogMeta = ({ publishedDate, commentsCount, category }) => {
   return (
