@@ -85,6 +85,30 @@ const TipsPage = () => {
             (মোটা অক্ষরে) করে দিতে পারেন।
           </li>
         </ol>
+
+        {/* Workshop Video Section */}
+        <div className="pt-8 border-t border-gray-700">
+          <h2 className="text-2xl font-semibold text-center mb-4">
+            Here is our online workshop on <br />
+            <span className="text-blue-400">
+              Scientific Writing by Ucchash Toushif
+            </span>
+          </h2>
+
+          <div className="w-full flex justify-center">
+            <div className="aspect-video w-full rounded-lg overflow-hidden shadow-md">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/Ra5vf5HGDZo?si=NU2vYxDnIgz4OeBK"
+                title="Workshop on Scientific Writing"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
