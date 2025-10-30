@@ -1,12 +1,4 @@
-import {
-  CornerUpLeft,
-  FileText,
-  Lightbulb,
-  BookOpen,
-  Edit,
-  Menu,
-  X,
-} from "lucide-react";
+import { CornerUpLeft, Edit, Menu, X } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import blogLogo from "../assets/blog-logo.png";
@@ -20,13 +12,16 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/20 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between">
+      <div
+        className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between"
+        style={{ fontFamily: "'Roboto', serif" }}
+      >
         {/* Logo */}
         <a href="/" className="flex items-center space-x-2">
           <img
             src={blogLogo}
             alt="CAM-SUST Blog"
-            className="h-10 w-auto object-contain md:h-8"
+            className="h-6 w-auto object-contain md:h-6"
           />
         </a>
 
