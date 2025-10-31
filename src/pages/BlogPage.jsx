@@ -35,7 +35,7 @@ const BlogPage = () => {
     return (
       <div className="pt-20 px-4">
         <BlogListHeader
-          title="Welcome to CAM Blog"
+          title="Latest Blogs"
           description="Explore our collection of insightful articles on Astronomy, Astrophysics and more"
         />
         <BlogSkeleton count={itemsPerPage} />{" "}
