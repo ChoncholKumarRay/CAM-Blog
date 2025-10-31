@@ -6,7 +6,7 @@ const ContentSuggestions = () => {
   const [openCategory, setOpenCategory] = useState(null);
 
   return (
-    <section style={{ fontFamily: "'Roboto', sans-serif" }}>
+    <section className="font-roboto">
       <h2 className="text-3xl font-bold mb-4 text-center text-blue-400">
         Content Suggestion to Writers
       </h2>

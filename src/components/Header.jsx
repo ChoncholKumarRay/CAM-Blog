@@ -12,10 +12,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-white/20 shadow-sm">
-      <div
-        className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between"
-        style={{ fontFamily: "'Roboto', serif" }}
-      >
+      <div className="max-w-7xl mx-auto px-4 py-2 flex items-center justify-between font-roboto">
         {/* Logo */}
         <a href="/" className="flex items-center space-x-2">
           <img

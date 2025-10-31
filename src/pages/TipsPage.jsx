@@ -1,19 +1,8 @@
 const TipsPage = () => {
   return (
-    <div
-      className="relative z-10 min-h-screen flex justify-center items-start pt-28 px-4 pb-12"
-      style={{
-        fontFamily: "'Tiro Bangla', sans-serif",
-        backgroundColor: "#121212",
-      }}
-    >
+    <div className="relative z-10 min-h-screen flex justify-center items-start pt-28 px-4 pb-12 font-bangla">
       <div className="w-full max-w-3xl bg-gray-800/80 rounded-xl p-8 shadow-lg backdrop-blur-sm text-white space-y-6">
-        <h1
-          className="text-3xl font-bold mb-6 text-blue-400 text-center"
-          style={{
-            fontFamily: "'Roboto', 'Roboto', sans-serif",
-          }}
-        >
+        <h1 className="text-3xl font-bold mb-6 text-blue-400 text-center font-roboto">
           Blog Writing Tips
         </h1>
 
@@ -100,12 +89,7 @@ const TipsPage = () => {
 
         {/* Workshop Video Section */}
         <div className="pt-8 border-t border-gray-700">
-          <h2
-            className="text-2xl font-semibold text-center mb-4"
-            style={{
-              fontFamily: "'Roboto', 'Roboto', sans-serif",
-            }}
-          >
+          <h2 className="text-2xl font-semibold text-center mb-4 font-roboto">
             Here is our online workshop on <br />
             <span className="text-blue-400">
               Scientific Writing by Uchsash Tousif

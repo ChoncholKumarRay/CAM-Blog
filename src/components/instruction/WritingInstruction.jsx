@@ -10,13 +10,8 @@ const WritingInstruction = () => {
   };
 
   return (
-    <section style={{ fontFamily: "'Tiro Bangla', serif" }}>
-      <h1
-        className="text-3xl font-bold mb-6 text-center text-blue-400"
-        style={{
-          fontFamily: "'Roboto', 'Roboto', sans-serif",
-        }}
-      >
+    <section className="font-bangla">
+      <h1 className="text-3xl font-bold mb-6 text-center text-blue-400 font-roboto">
         Instructions for Blog Writing
       </h1>
 
