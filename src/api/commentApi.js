@@ -1,13 +1,14 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 export const fetchComments = async (id, page, limit) => {
   const response = await fetch(
-    `http://localhost:5000/api/blog/${id}/comments?page=${page}&limit=${limit}`
+    `${API_BASE_URL}/api/blog/${id}/comments?page=${page}&limit=${limit}`
   );
   if (!response.ok) throw new Error("Failed to fetch comments");
   return response.json();
 };
 
 export const submitComment = async ({ id, commentData }) => {
-  const response = await fetch(`http://localhost:5000/api/blog/${id}/comment`, {
+  const response = await fetch(`${API_BASE_URL}/api/blog/${id}/comment`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
