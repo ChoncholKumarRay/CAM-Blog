@@ -13,9 +13,8 @@ const BlogListControls = ({
 
   return (
     <div className="px-2 mb-2 mt-10 text-gray-300 text-sm">
-      {totalItems > 0
-        ? `Showing ${startItem} - ${endItem} of ${totalItems} blogs`
-        : "No blogs"}
+      {totalItems > 0 &&
+        `Showing ${startItem} - ${endItem} of ${totalItems} blogs`}
     </div>
     /* <button
         onClick={onRefresh}
