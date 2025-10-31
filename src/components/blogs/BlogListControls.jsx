@@ -12,7 +12,7 @@ const BlogListControls = ({
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
-    <div className="px-2 mb-2 mt-8 text-gray-300 text-sm">
+    <div className="px-2 mb-2 mt-10 text-gray-300 text-sm">
       {totalItems > 0
         ? `Showing ${startItem} - ${endItem} of ${totalItems} blogs`
         : "No blogs"}

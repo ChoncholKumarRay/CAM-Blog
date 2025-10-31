@@ -32,7 +32,15 @@ const BlogPage = () => {
   };
 
   if (isLoading) {
-    return <BlogSkeleton count={itemsPerPage} />;
+    return (
+      <div className="pt-20 px-4">
+        <BlogListHeader
+          title="Welcome to CAM Blog"
+          description="Explore our collection of insightful articles on Astronomy, Astrophysics and more"
+        />
+        <BlogSkeleton count={itemsPerPage} />{" "}
+      </div>
+    );
   }
 
   if (isError) {
