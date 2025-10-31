@@ -43,8 +43,8 @@ const BlogPage = () => {
     <div className="relative z-10 min-h-screen flex justify-center pt-20 py-12 px-4">
       <div className="w-full max-w-4xl">
         <BlogListHeader
-          title="Latest Articles"
-          description="Explore our collection of insightful articles on technology, education, lifestyle, and more."
+          title="Welcome to CAM Blog"
+          description="Explore our collection of insightful articles on Astronomy, Astrophysics and more"
         />
 
         <BlogListControls
