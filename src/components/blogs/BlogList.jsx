@@ -1,5 +1,6 @@
 import React from "react";
 import BlogCard from "../BlogCard";
+import BlogSkeleton from "./BlogSkeleton";
 
 const BlogList = ({ blogs, isLoading, isFetching }) => {
   if (blogs.length === 0) {

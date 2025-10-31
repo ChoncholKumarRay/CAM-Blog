@@ -31,22 +31,6 @@ const BlogPage = () => {
     handlePageChange(newPage, totalPages, isFetching, true);
   };
 
-  if (isLoading) {
-    return (
-      <div className="pt-20 px-4">
-        <BlogListHeader
-          title="Latest Blogs"
-          description="Explore our collection of insightful articles on Astronomy, Astrophysics and more"
-        />
-        <BlogSkeleton count={itemsPerPage} />{" "}
-      </div>
-    );
-  }
-
-  if (isError) {
-    return <BlogError error={error} onRetry={() => window.location.reload()} />;
-  }
-
   return (
     <div className="relative z-10 min-h-screen flex justify-center pt-20 py-12 px-4">
       <div className="w-full max-w-4xl">
@@ -54,24 +38,33 @@ const BlogPage = () => {
           title="Welcome to CAM Blog"
           description="Explore our collection of insightful articles on Astronomy, Astrophysics and more"
         />
-
-        <BlogListControls
-          currentPage={page}
-          itemsPerPage={itemsPerPage}
-          totalItems={totalBlogs}
-          onRefresh={refetch}
-          isRefreshing={isFetching}
-        />
-
-        <BlogList blogs={blogs} isLoading={isLoading} isFetching={isFetching} />
-
-        <BlogPagination
-          currentPage={page}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
-          isFetching={isFetching}
-          nextPage={nextPage}
-        />
+        {isLoading ? (
+          <BlogSkeleton count={itemsPerPage} />
+        ) : isError ? (
+          <BlogError error={error} onRetry={() => window.location.reload()} />
+        ) : (
+          <>
+            <BlogListControls
+              currentPage={page}
+              itemsPerPage={itemsPerPage}
+              totalItems={totalBlogs}
+              onRefresh={refetch}
+              isRefreshing={isFetching}
+            />
+            <BlogList
+              blogs={blogs}
+              isLoading={isLoading}
+              isFetching={isFetching}
+            />
+            <BlogPagination
+              currentPage={page}
+              totalPages={totalPages}
+              onPageChange={onPageChange}
+              isFetching={isFetching}
+              nextPage={nextPage}
+            />
+          </>
+        )}
       </div>
     </div>
   );
