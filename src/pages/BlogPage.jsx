@@ -32,7 +32,7 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="relative z-10 min-h-screen flex justify-center pt-20 py-12 px-4">
+    <div className="relative z-10 min-h-screen flex justify-center pt-20 py-12 px-4 md:pt-16">
       <div className="w-full max-w-4xl">
         <BlogListHeader
           title="Welcome to CAM Blog"
