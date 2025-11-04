@@ -16,16 +16,6 @@ const BlogListControls = ({
       {totalItems > 0 &&
         `Showing ${startItem} - ${endItem} of ${totalItems} blogs`}
     </div>
-    /* <button
-        onClick={onRefresh}
-        disabled={isRefreshing}
-        className="flex items-center gap-2 p-1 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        title="Refresh blogs"
-      >
-        <RefreshCw
-          className={`w-5 h-5 ${isRefreshing ? "animate-spin" : ""}`}
-        />
-      </button> */
   );
 };
 
