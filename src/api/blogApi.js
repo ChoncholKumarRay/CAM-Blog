@@ -1,9 +1,32 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-export const fetchAllBlogs = async (page, limit = 6) => {
-  const response = await fetch(
-    `${API_BASE_URL}/api/blog?page=${page}&limit=${limit}`
-  );
-  if (!response.ok) throw new Error("Failed to fetch blogs");
+// api/blogApi.js
+export const fetchAllBlogs = async (
+  page = 1,
+  limit = 6,
+  category = null,
+  search = "",
+  sortBy = "latest"
+) => {
+  const params = new URLSearchParams({
+    page: page.toString(),
+    limit: limit.toString(),
+    sortBy,
+  });
+
+  if (category) {
+    params.append("category", category);
+  }
+
+  if (search) {
+    params.append("search", search);
+  }
+
+  const response = await fetch(`${API_BASE_URL}/api/blog?${params.toString()}`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch blogs");
+  }
+
   return response.json();
 };
 
