@@ -17,7 +17,7 @@ import BlogSortDropdown from "../components/blogs/BlogSortDropdown";
 import BlogActiveFilters from "../components/blogs/BlogActiveFilters";
 
 const BlogPage = () => {
-  const itemsPerPage = 6;
+  const itemsPerPage = 5;
   const { page, nextPage, handlePageChange, clearNextPage } = usePagination(1);
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");

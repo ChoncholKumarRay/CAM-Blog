@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 // api/blogApi.js
 export const fetchAllBlogs = async (
   page = 1,
-  limit = 6,
+  limit = 5,
   category = null,
   search = "",
   sortBy = "latest"

@@ -4,7 +4,7 @@ const BlogSkeleton = ({ count = 6 }) => {
   return (
     <div className="relative z-10 w-full flex justify-center mt-10 pt-6 pb-8">
       <div className="w-full max-w-6xl space-y-8">
-        {[...Array(count - 2)].map((_, i) => (
+        {[...Array(count - 1)].map((_, i) => (
           <div
             key={i}
             className="animate-pulse bg-gray-900 rounded-lg overflow-hidden shadow-lg border-t-4 border-[#234C6A] flex flex-col md:flex-row"
