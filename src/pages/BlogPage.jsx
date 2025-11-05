@@ -88,7 +88,7 @@ const BlogPage = () => {
             </div>
 
             {/* Dropdown + Refresh aligned side by side on mobile */}
-            <div className="flex flex-row sm:flex-row gap-3 sm:gap-3 justify-between sm:justify-start">
+            <div className="flex flex-row sm:flex-row gap-3 sm:gap-3 justify-between sm:justify-start text-sm sm:text-base md:text-lg">
               <BlogSortDropdown sortBy={sortBy} onSortChange={setSortBy} />
               <button
                 onClick={refetch}

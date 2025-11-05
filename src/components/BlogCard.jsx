@@ -43,13 +43,13 @@ const BlogCard = ({ blog }) => {
       <div className="md:w-1/2 w-full p-6 pt-6 flex flex-col justify-between">
         <div>
           {/* Category */}
-          <span className="inline-block  text-s font-semibold text-blue-400 pt-0 rounded mb-3 uppercase tracking-wider">
+          <span className="text-sm sm:text-base md:text-lg inline-block  font-semibold text-blue-400 pt-0 rounded mb-3 uppercase tracking-wider">
             {blog.category}
           </span>
 
           {/* Title */}
           <h1
-            className="text-2xl font-bold text-gray-100 mb-3 hover:text-blue-500 transition-colors cursor-pointer leading-tight line-clamp-2"
+            className="text-lg sm:text-xl md:text-2xl font-bold text-gray-100 mb-3 hover:text-blue-500 transition-colors cursor-pointer leading-tight line-clamp-2"
             onClick={handleReadMore}
           >
             {blog.title}
@@ -57,13 +57,13 @@ const BlogCard = ({ blog }) => {
 
           {/* Excerpt (HTML render) */}
           <div
-            className="text-gray-300 mb-4 leading-relaxed prose prose-invert max-w-none line-clamp-4"
+            className="text-sm sm:text-base md:text-lg text-gray-300 mb-4 leading-relaxed prose prose-invert max-w-none line-clamp-4"
             dangerouslySetInnerHTML={{ __html: blog.excerpt }}
           />
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between text-sm text-gray-400 pt-4 pb-2 border-t border-gray-700">
+        <div className="flex items-center justify-between text-xs sm:text-sm text-gray-400 pt-4 pb-2 border-t border-gray-700">
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <MessageCircle className="w-4 h-4 text-gray-400" />

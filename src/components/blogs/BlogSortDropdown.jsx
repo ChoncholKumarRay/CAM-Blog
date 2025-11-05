@@ -17,7 +17,7 @@ const BlogSortDropdown = ({ sortBy, onSortChange }) => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg px-4 py-3 text-white hover:bg-gray-700 transition-colors"
+        className="flex items-center gap-2 bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg px-4 py-3 text-white hover:bg-gray-700 transition-colors text-sm sm:text-base md:text-lg"
       >
         <SlidersHorizontal size={20} />
         <span className="hidden sm:inline">{currentSort.label}</span>
@@ -40,7 +40,7 @@ const BlogSortDropdown = ({ sortBy, onSortChange }) => {
                     onSortChange(option.value);
                     setIsOpen(false);
                   }}
-                  className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
+                  className={`text-sm sm:text-base md:text-lg w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
                     sortBy === option.value
                       ? "bg-blue-600 text-white"
                       : "text-gray-300 hover:bg-gray-700"

@@ -12,7 +12,7 @@ const BlogSearchBar = ({ searchQuery, onSearchChange, onClear }) => (
       placeholder="Search blogs..."
       value={searchQuery}
       onChange={(e) => onSearchChange(e.target.value)}
-      className="w-full bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg pl-10 pr-10 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+      className="text-sm sm:text-base md:text-lg w-full bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg pl-10 pr-10 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
     />
     {searchQuery && (
       <button

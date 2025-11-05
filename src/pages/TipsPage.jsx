@@ -2,11 +2,11 @@ const TipsPage = () => {
   return (
     <div className="relative z-10 min-h-screen flex justify-center items-start pt-28 px-4 pb-12 font-bangla">
       <div className="w-full max-w-3xl bg-gray-800/80 rounded-xl p-8 shadow-lg backdrop-blur-sm text-white space-y-6">
-        <h1 className="text-3xl font-bold mb-6 text-blue-400 text-center font-roboto">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-blue-400 text-center font-roboto">
           Blog Writing Tips
         </h1>
 
-        <ol className="list-decimal list-inside space-y-4 text-gray-200 leading-relaxed text-lg">
+        <ol className="list-decimal list-inside space-y-4 text-gray-200 leading-relaxed text-sm sm:text-base md:text-lg">
           <li>
             প্রথমে আপনার আর্টিকেলের জন্য একটা মজার শিরোনাম (Title) খুঁজে বের
             করতে হবে। মজাদার শিরোনাম সবসময় পাঠকদের মনোযোগ আকর্ষণে ভূমিকা রাখে।
