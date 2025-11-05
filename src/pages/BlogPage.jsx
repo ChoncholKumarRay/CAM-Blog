@@ -78,6 +78,7 @@ const BlogPage = () => {
           />
 
           <div className="flex flex-col sm:flex-row gap-3 mb-4">
+            {/* Search bar on top for mobile, left for laptop */}
             <div className="flex-1">
               <BlogSearchBar
                 searchQuery={searchQuery}
@@ -85,17 +86,22 @@ const BlogPage = () => {
                 onClear={() => setSearchQuery("")}
               />
             </div>
-            <BlogSortDropdown sortBy={sortBy} onSortChange={setSortBy} />
-            <button
-              onClick={refetch}
-              disabled={isFetching}
-              className="bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg px-4 py-3 text-white hover:bg-gray-700 transition-all disabled:opacity-50"
-            >
-              <RefreshCw
-                size={20}
-                className={isFetching ? "animate-spin mx-auto" : "mx-auto"}
-              />
-            </button>
+
+            {/* Dropdown + Refresh aligned side by side on mobile */}
+            <div className="flex flex-row sm:flex-row gap-3 sm:gap-3 justify-between sm:justify-start">
+              <BlogSortDropdown sortBy={sortBy} onSortChange={setSortBy} />
+              <button
+                onClick={refetch}
+                disabled={isFetching}
+                className="flex items-center gap-2 bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg px-4 py-3 text-white hover:bg-gray-700 transition-all disabled:opacity-50"
+              >
+                <RefreshCw
+                  size={20}
+                  className={isFetching ? "animate-spin" : ""}
+                />
+                <span className="sm:hidden">Refresh</span>
+              </button>
+            </div>
           </div>
 
           <BlogActiveFilters

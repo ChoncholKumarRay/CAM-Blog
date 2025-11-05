@@ -5,8 +5,8 @@ const BlogSortDropdown = ({ sortBy, onSortChange }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const sortOptions = [
-    { value: "latest", label: "Latest First", icon: Calendar },
-    { value: "oldest", label: "Oldest First", icon: Clock },
+    { value: "latest", label: "Latest Blogs", icon: Calendar },
+    { value: "oldest", label: "Oldest Blogs", icon: Clock },
     { value: "popular", label: "Most Popular", icon: TrendingUp },
   ];
 
@@ -30,7 +30,7 @@ const BlogSortDropdown = ({ sortBy, onSortChange }) => {
             className="fixed inset-0 z-10"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-20 overflow-hidden">
+          <div className="absolute left-0 sm:right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-20 overflow-hidden">
             {sortOptions.map((option) => {
               const Icon = option.icon;
               return (
