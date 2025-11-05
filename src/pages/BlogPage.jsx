@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { RefreshCw } from "lucide-react";
 import { useBlogs } from "../hooks/useBlogs";
 import { usePagination } from "../hooks/usePagination";
+import { useCategories } from "../hooks/useCategories";
 
 import BlogListHeader from "../components/blogs/BlogListHeader";
 import BlogListControls from "../components/blogs/BlogListControls";
@@ -14,21 +15,6 @@ import BlogCategoryChips from "../components/blogs/BlogCategoryChips";
 import BlogSearchBar from "../components/blogs/BlogSearchBar";
 import BlogSortDropdown from "../components/blogs/BlogSortDropdown";
 import BlogActiveFilters from "../components/blogs/BlogActiveFilters";
-
-const categories = [
-  "All",
-  "Deep Sky",
-  "Research",
-  "Photography",
-  "Events",
-  "DIY",
-  "Observation",
-  "Astrophysics",
-  "Equipment",
-  "News",
-  "Tutorial",
-  "Theory",
-];
 
 const BlogPage = () => {
   const itemsPerPage = 6;
@@ -69,6 +55,12 @@ const BlogPage = () => {
     setSearchQuery("");
     setSortBy("latest");
   };
+  const {
+    data: categoryData,
+    isLoading: catLoading,
+    isError: catError,
+  } = useCategories();
+  const categories = categoryData?.categories || ["All"];
 
   return (
     <div className="relative z-10 min-h-screen flex justify-center pt-20 py-12 px-4 md:pt-16">

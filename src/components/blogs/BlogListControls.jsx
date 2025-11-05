@@ -1,13 +1,4 @@
-import React from "react";
-import { RefreshCw } from "lucide-react";
-
-const BlogListControls = ({
-  currentPage,
-  itemsPerPage,
-  totalItems,
-  onRefresh,
-  isRefreshing,
-}) => {
+const BlogListControls = ({ currentPage, itemsPerPage, totalItems }) => {
   const startItem = totalItems > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0;
   const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
