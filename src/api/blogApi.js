@@ -36,3 +36,13 @@ export const fetchDetailedBlog = async (id) => {
     throw new Error("Failed to fetch the blog data. Please contact with us!");
   return response.json();
 };
+
+export const fetchCategories = async () => {
+  const response = await fetch(`${API_BASE_URL}/api/blog/categories`);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch categories");
+  }
+
+  return response.json();
+};
