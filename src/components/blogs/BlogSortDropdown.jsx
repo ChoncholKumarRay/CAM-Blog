@@ -42,7 +42,7 @@ const BlogSortDropdown = ({ sortBy, onSortChange }) => {
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors ${
                     sortBy === option.value
-                      ? "bg-indigo-600 text-white"
+                      ? "bg-blue-600 text-white"
                       : "text-gray-300 hover:bg-gray-700"
                   }`}
                 >

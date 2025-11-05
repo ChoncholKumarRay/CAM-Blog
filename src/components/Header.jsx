@@ -72,8 +72,8 @@ const Header = () => {
             onClick={() => navigate("/contribute")}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors duration-200 ${
               getActive("/contribute")
-                ? "bg-indigo-700 text-white"
-                : "bg-indigo-600 text-white hover:bg-indigo-700"
+                ? "bg-blue-700 text-white"
+                : "bg-blue-600 text-white hover:bg-blue-700"
             }`}
           >
             <Edit size={18} />
@@ -148,7 +148,7 @@ const Header = () => {
               navigate("/contribute");
               setMenuOpen(false);
             }}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            className="w-full bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded-lg font-medium transition-colors"
           >
             Contribute
           </button>
