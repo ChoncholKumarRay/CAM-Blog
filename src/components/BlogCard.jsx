@@ -29,11 +29,12 @@ const BlogCard = ({ blog }) => {
   return (
     <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#234C6A] flex flex-col md:flex-row">
       {/* Featured Image (Left Side) */}
-      <div className="md:w-1/2 w-full h-64 overflow-hidden flex items-center justify-center">
+      {/* Featured Image (Left Side) */}
+      <div className="md:w-1/2 w-full aspect-video overflow-hidden flex items-center justify-center bg-gray-800">
         <img
           src={imageSrc}
           alt={blog.title}
-          className="w-full h-full object-cover "
+          className="w-full h-full object-cover"
           onError={(e) => (e.target.src = "/placeholder.jpg")}
         />
       </div>

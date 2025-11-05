@@ -89,11 +89,12 @@ const BlogPage = () => {
             <button
               onClick={refetch}
               disabled={isFetching}
-              className={`bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg px-4 py-3 text-white hover:bg-gray-700 transition-all disabled:opacity-50 ${
-                isFetching ? "animate-spin" : ""
-              }`}
+              className="bg-gray-800 bg-opacity-70 border border-gray-700 rounded-lg px-4 py-3 text-white hover:bg-gray-700 transition-all disabled:opacity-50"
             >
-              <RefreshCw size={20} />
+              <RefreshCw
+                size={20}
+                className={isFetching ? "animate-spin mx-auto" : "mx-auto"}
+              />
             </button>
           </div>
 
