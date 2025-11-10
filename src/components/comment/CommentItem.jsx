@@ -43,7 +43,7 @@ const CommentItem = ({ comment }) => {
 
         <p
           ref={textElementRef}
-          className={`text-gray-300 text-sm leading-snug mt-1 transition-all duration-200 ${
+          className={`text-gray-300 text-sm leading-snug mt-1 transition-all duration-200 whitespace-pre-line ${
             expanded ? "" : "line-clamp-3"
           }`}
           style={{
