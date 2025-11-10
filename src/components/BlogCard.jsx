@@ -1,7 +1,7 @@
 import React from "react";
 import { Calendar, MessageCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import placeholderImage from "../assets/placeholder.jpg";
+import CloudinaryImage from "./CloudinaryImage";
 
 const BlogCard = ({ blog }) => {
   const navigate = useNavigate();
@@ -10,12 +10,18 @@ const BlogCard = ({ blog }) => {
     navigate(`/${blog.id}`);
   };
 
-  // Handle base64 featured image
-  const imageSrc = blog.featured_image
-    ? blog.featured_image.startsWith("data:image")
-      ? blog.featured_image
-      : `data:image/jpeg;base64,${blog.featured_image}`
-    : "/placeholder.jpg";
+  // Parse featured_image if it's a JSON string
+  let featuredImage = null;
+  if (blog.featured_image) {
+    try {
+      featuredImage =
+        typeof blog.featured_image === "string"
+          ? JSON.parse(blog.featured_image)
+          : blog.featured_image;
+    } catch (e) {
+      console.error("Error parsing featured_image:", e);
+    }
+  }
 
   // Format date as "20 Jan, 2025"
   const formattedDate = new Date(blog.published_date).toLocaleDateString(
@@ -31,11 +37,11 @@ const BlogCard = ({ blog }) => {
     <div className="bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border-t-4 border-[#234C6A] flex flex-col md:flex-row">
       {/* Featured Image (Left Side) */}
       <div className="md:w-1/2 w-full aspect-video overflow-hidden flex items-center justify-center bg-gray-800">
-        <img
-          src={imageSrc}
+        <CloudinaryImage
+          imageData={featuredImage}
           alt={blog.title}
           className="w-full h-full object-cover"
-          onError={(e) => (e.target.src = `${placeholderImage}`)}
+          sizes="(max-width: 768px) 100vw, 50vw"
         />
       </div>
 
@@ -43,7 +49,7 @@ const BlogCard = ({ blog }) => {
       <div className="md:w-1/2 w-full p-6 pt-6 flex flex-col justify-between">
         <div>
           {/* Category */}
-          <span className="text-sm sm:text-base md:text-lg inline-block  font-semibold text-blue-400 pt-0 rounded mb-3 uppercase tracking-wider">
+          <span className="text-sm sm:text-base md:text-lg inline-block font-semibold text-blue-400 pt-0 rounded mb-3 uppercase tracking-wider">
             {blog.category}
           </span>
 
@@ -69,13 +75,11 @@ const BlogCard = ({ blog }) => {
               <MessageCircle className="w-4 h-4 text-gray-400" />
               <span>{blog.comments_count} Comments</span>
             </div>
-
             <div className="flex items-center space-x-1">
               <Calendar className="w-4 h-4 text-gray-400" />
               <span>{formattedDate}</span>
             </div>
           </div>
-
           <button
             onClick={handleReadMore}
             className="text-blue-400 hover:text-blue-500 transition-colors font-medium"
