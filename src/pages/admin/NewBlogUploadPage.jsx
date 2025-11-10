@@ -46,10 +46,11 @@ const NewBlogUploadPage = () => {
     featured_image: null,
   });
   const [featuredImagePreview, setFeaturedImagePreview] = useState(null);
+  const [imageLoading, setImageLoading] = useState(false);
+
   const [showImageDialog, setShowImageDialog] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [imageCaption, setImageCaption] = useState("");
-  const [imageFile, setImageFile] = useState(null);
 
   const editor = useEditor({
     extensions: [
@@ -109,14 +110,18 @@ const NewBlogUploadPage = () => {
     const { name, files, value } = e.target;
     if (name === "featured_image") {
       const file = files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setBlogData({ ...blogData, featured_image: reader.result });
-          setFeaturedImagePreview(reader.result);
-        };
-        reader.readAsDataURL(file);
-      }
+      setImageLoading(true); // show spinner
+      setBlogData({ ...blogData, featured_image: file });
+
+      const previewUrl = URL.createObjectURL(file);
+      setFeaturedImagePreview(previewUrl);
+
+      // Wait for image to load before hiding spinner
+      const img = new Image();
+      img.src = previewUrl;
+      img.onload = () => {
+        setImageLoading(false);
+      };
     } else {
       setBlogData({ ...blogData, [name]: value });
     }
@@ -192,23 +197,20 @@ const NewBlogUploadPage = () => {
       .map((a) => a.trim())
       .filter((a) => a);
 
-    const submitData = {
-      title: blogData.title,
-      published_date: blogData.published_date,
-      category: blogData.category,
-      authors: authorsArray,
-      featured_image: blogData.featured_image,
-      body: body,
-    };
-
     try {
       // Update the URL to point to your backend server
+      const formData = new FormData();
+      formData.append("title", blogData.title);
+      formData.append("published_date", blogData.published_date);
+      formData.append("category", blogData.category);
+      formData.append("authors", JSON.stringify(authorsArray));
+      formData.append("body", body);
+      if (blogData.featured_image)
+        formData.append("featured_image", blogData.featured_image);
+
       const response = await fetch("http://localhost:5000/api/blog/new", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(submitData),
+        body: formData, // send FormData instead of JSON
       });
 
       if (!response.ok) {
@@ -337,13 +339,19 @@ const NewBlogUploadPage = () => {
               </label>
 
               {!featuredImagePreview ? (
-                <label className="flex flex-col items-center justify-center w-[480px] h-[270px]   hover:bg-gray-750  mx-auto border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-750 transition-colors">
+                <label className="flex flex-col items-center justify-center w-[480px] h-[270px] mx-auto border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-750 transition-colors">
                   <div className="flex flex-col items-center justify-center">
-                    <Upload className="w-10 h-10 text-gray-400 mb-2" />
-                    <p className="text-sm text-gray-400">
-                      <span className="font-semibold">Click to upload</span>
-                    </p>
-                    <p className="text-xs text-gray-500">PNG, JPG, GIF</p>
+                    {imageLoading ? (
+                      <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500 mb-2" />
+                    ) : (
+                      <>
+                        <Upload className="w-10 h-10 text-gray-400 mb-2" />
+                        <p className="text-sm text-gray-400">
+                          <span className="font-semibold">Click to upload</span>
+                        </p>
+                        <p className="text-xs text-gray-500">PNG, JPG, GIF</p>
+                      </>
+                    )}
                   </div>
                   <input
                     type="file"
