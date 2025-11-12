@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { User2 } from "lucide-react";
 import { getFontFamily } from "../../utils/textUtils";
 import { formatCommentDate } from "../../utils/dateFormatters";
@@ -6,24 +6,45 @@ import { formatCommentDate } from "../../utils/dateFormatters";
 const CommentItem = ({ comment }) => {
   const [expanded, setExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
-  const textRef = useState(null);
+  const textRef = useRef(null);
 
-  // Detect if text exceeds 3 lines (after render)
-  const textElementRef = (el) => {
-    if (el && !isOverflowing) {
-      const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
-      const maxHeight = lineHeight * 3;
-      if (el.scrollHeight > maxHeight) setIsOverflowing(true);
-    }
-    textRef.current = el;
-  };
+  // Check if text overflows
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (textRef.current) {
+        // Get line height
+        const computedStyle = getComputedStyle(textRef.current);
+        const lineHeight = parseFloat(computedStyle.lineHeight);
+
+        // Clamped height for 3 lines
+        const clampedHeight = lineHeight * 3;
+
+        // Full content height
+        const fullHeight = textRef.current.scrollHeight;
+
+        // Add a small tolerance (1px) for rounding errors
+        const isNowOverflowing = fullHeight > clampedHeight + 1;
+
+        setIsOverflowing(isNowOverflowing);
+      }
+    };
+
+    // Small delay to ensure layout is complete
+    const timer = setTimeout(checkOverflow, 0);
+
+    // Check on window resize
+    window.addEventListener("resize", checkOverflow);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", checkOverflow);
+    };
+  }, [comment.text]);
 
   return (
     <div className="flex items-start space-x-3 border-b border-gray-700 pb-3 last:border-none">
       <div className="flex-shrink-0">
         <User2 className="w-7 h-7 text-blue-500 mt-1" />
       </div>
-
       <div className="flex-1">
         <div className="flex items-center justify-between">
           <span
@@ -40,9 +61,8 @@ const CommentItem = ({ comment }) => {
             </span>
           )}
         </div>
-
         <p
-          ref={textElementRef}
+          ref={textRef}
           className={`text-gray-300 text-sm leading-snug mt-1 transition-all duration-200 whitespace-pre-line ${
             expanded ? "" : "line-clamp-3"
           }`}
@@ -52,7 +72,6 @@ const CommentItem = ({ comment }) => {
         >
           {comment.text}
         </p>
-
         {isOverflowing && (
           <button
             onClick={() => setExpanded(!expanded)}
