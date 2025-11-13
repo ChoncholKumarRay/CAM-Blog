@@ -23,34 +23,12 @@ const BlogEditor = ({ content = "", onChange }) => {
     },
   });
 
-  const handleInsertImage = (
-    src,
-    caption,
-    isLoading = false,
-    oldSrc = null
-  ) => {
+  const handleInsertImage = (src, caption) => {
     if (!editor) return;
 
-    // If replacing an old image
-    if (oldSrc) {
-      const html = editor.getHTML();
-      const updatedHtml = html.replace(
-        new RegExp(
-          `src="${oldSrc.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`,
-          "g"
-        ),
-        `src="${src}"`
-      );
-      editor.commands.setContent(updatedHtml);
-      onChange(updatedHtml);
-      return;
-    }
-
-    // Insert new image with loading class
-    const loadingClass = isLoading ? "image-uploading" : "";
     const imageHtml = caption
-      ? `<figure class="${loadingClass}"><img src="${src}" alt="${caption}" class="max-w-full h-auto rounded-lg" /><figcaption class="text-center text-sm text-gray-400 italic mt-2">${caption}</figcaption></figure>`
-      : `<img src="${src}" alt="Blog image" class="max-w-full h-auto rounded-lg ${loadingClass}" />`;
+      ? `<figure><img src="${src}" alt="${caption}" class="max-w-full h-auto rounded-lg" /><figcaption class="text-center text-sm text-gray-400 italic mt-2">${caption}</figcaption></figure>`
+      : `<img src="${src}" alt="Blog image" class="max-w-full h-auto rounded-lg" />`;
 
     editor.chain().focus().insertContent(imageHtml).run();
   };
@@ -74,7 +52,7 @@ const BlogEditor = ({ content = "", onChange }) => {
       />
 
       {/* Editor Content */}
-      <div className="bg-gray-800 border border-t-0 border-gray-700 rounded-b-lg editor-content">
+      <div className="bg-gray-800 border border-t-0 border-gray-700 rounded-b-lg">
         <EditorContent editor={editor} />
       </div>
 
