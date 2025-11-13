@@ -1,7 +1,7 @@
 // src/components/blog-editor/ImageUploadDialog.jsx
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { Upload, X, Loader2, RefreshCw } from "lucide-react";
+import { Upload, X, Loader2 } from "lucide-react";
 
 const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
   const [imageUrl, setImageUrl] = useState("");
@@ -34,7 +34,7 @@ const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
       }
 
       const data = await response.json();
-      return data.url; // Assuming API returns { url: "cloudinary-url" }
+      return data.url;
     } catch (error) {
       console.error("Image upload error:", error);
       throw error;
@@ -45,15 +45,17 @@ const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Show preview in modal
+    // ✅ INSTANT: Create blob URL immediately (0ms)
     const tempUrl = URL.createObjectURL(file);
+
+    // ✅ INSTANT: Set preview immediately - no waiting
     setPreviewUrl(tempUrl);
     setIsUploading(true);
     setUploadError(null);
     setUploadProgress(0);
 
     try {
-      // Simulate progress (since we don't have real progress tracking)
+      // Simulate progress
       const progressInterval = setInterval(() => {
         setUploadProgress((prev) => {
           if (prev >= 90) {
@@ -64,7 +66,7 @@ const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
         });
       }, 200);
 
-      // Upload to server
+      // Upload to server (happens in background)
       const uploadedUrl = await uploadImageToServer(file);
 
       // Complete progress
@@ -74,14 +76,10 @@ const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
       // Success notification
       setTimeout(() => {
         toast.success("Image uploaded successfully!");
-
-        // Insert image into editor
         onInsertImage(uploadedUrl, imageCaption, false);
-
-        // Cleanup
         URL.revokeObjectURL(tempUrl);
         handleClose();
-      }, 500);
+      }, 300); // Reduced from 500ms to 300ms
     } catch (error) {
       setUploadError(error.message);
       setIsUploading(false);
@@ -124,32 +122,40 @@ const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
           </button>
         </div>
 
-        {/* Upload Preview */}
-        {previewUrl && isUploading && (
+        {/* Upload Preview - Shows INSTANTLY */}
+        {previewUrl && (
           <div className="mb-4 relative">
-            <div className="relative rounded-lg overflow-hidden">
+            <div className="relative rounded-lg overflow-hidden bg-gray-800">
+              {/* Image with loading="eager" for instant render */}
               <img
                 src={previewUrl}
                 alt="Upload preview"
                 className="w-full h-48 object-cover"
+                loading="eager"
+                decoding="async"
               />
 
-              {/* Upload overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center">
-                <Loader2 className="w-10 h-10 text-blue-400 animate-spin mb-3" />
-                <p className="text-white text-sm font-medium mb-2">
-                  Uploading...
-                </p>
+              {/* Upload overlay - only shown while uploading */}
+              {isUploading && (
+                <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center backdrop-blur-sm">
+                  <Loader2 className="text-blue-400 animate-spin origin-center inline-block mb-3" />
 
-                {/* Progress bar */}
-                <div className="w-3/4 bg-gray-700 rounded-full h-2 overflow-hidden">
-                  <div
-                    className="bg-blue-500 h-full transition-all duration-300"
-                    style={{ width: `${uploadProgress}%` }}
-                  />
+                  <p className="text-white text-sm font-medium mb-2">
+                    Uploading to server...
+                  </p>
+
+                  {/* Progress bar */}
+                  <div className="w-3/4 bg-gray-700 rounded-full h-2 overflow-hidden">
+                    <div
+                      className="bg-blue-500 h-full transition-all duration-300 ease-out"
+                      style={{ width: `${uploadProgress}%` }}
+                    />
+                  </div>
+                  <p className="text-gray-300 text-xs mt-2">
+                    {uploadProgress}%
+                  </p>
                 </div>
-                <p className="text-gray-300 text-xs mt-2">{uploadProgress}%</p>
-              </div>
+              )}
             </div>
           </div>
         )}
@@ -199,11 +205,7 @@ const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
               <label className="block text-white mb-2 text-sm">
                 Upload Image
               </label>
-              <label
-                className={`flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-750 transition-colors ${
-                  isUploading ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-              >
+              <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-700 border-dashed rounded-lg cursor-pointer bg-gray-800 hover:bg-gray-750 transition-colors">
                 <Upload className="w-8 h-8 text-gray-400 mb-2" />
                 <span className="text-sm text-gray-400">
                   Click to upload image
@@ -223,14 +225,15 @@ const ImageUploadDialog = ({ isOpen, onClose, onInsertImage }) => {
           </div>
         )}
 
-        <button
-          type="button"
-          onClick={handleClose}
-          disabled={isUploading}
-          className="w-full mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors disabled:opacity-50"
-        >
-          {isUploading ? "Uploading..." : "Cancel"}
-        </button>
+        {!isUploading && (
+          <button
+            type="button"
+            onClick={handleClose}
+            className="w-full mt-4 px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors"
+          >
+            Cancel
+          </button>
+        )}
       </div>
     </div>
   );
