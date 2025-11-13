@@ -2,10 +2,18 @@
 import React, { useState } from "react";
 import { Upload } from "lucide-react";
 import ImagePreview from "./ImagePreview";
+import { useEffect } from "react";
 
 const FeaturedImageUpload = ({ value, onChange }) => {
   const [preview, setPreview] = useState(null);
   const [isImageLoading, setIsImageLoading] = useState(false);
+
+  useEffect(() => {
+    if (!value) {
+      setPreview(null);
+      setIsImageLoading(false);
+    }
+  }, [value]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -60,7 +68,7 @@ const FeaturedImageUpload = ({ value, onChange }) => {
         <p className="text-sm text-gray-400">
           <span className="font-semibold">Click to upload</span>
         </p>
-        <p className="text-xs text-gray-500">PNG, JPG, GIF (MAX 10MB)</p>
+        <p className="text-xs text-gray-500">PNG, JPG, JPEG, WEBP (MAX 2MB)</p>
       </div>
       <input
         type="file"

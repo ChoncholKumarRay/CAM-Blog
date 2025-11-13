@@ -1,5 +1,5 @@
 // src/components/blog-editor/BlogEditor.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import { editorExtensions, editorProps } from "./editorConfig";
 import EditorToolbar from "./EditorToolbar";
@@ -7,6 +7,11 @@ import ImageUploadDialog from "./ImageUploadDialog";
 
 const BlogEditor = ({ content = "", onChange }) => {
   const [showImageDialog, setShowImageDialog] = useState(false);
+  useEffect(() => {
+    if (content === "") {
+      editor.commands.clearContent(true);
+    }
+  }, [content]);
 
   const editor = useEditor({
     extensions: editorExtensions,

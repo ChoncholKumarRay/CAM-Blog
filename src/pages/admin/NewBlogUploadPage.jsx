@@ -1,5 +1,6 @@
 // src/pages/NewBlogUploadPage.jsx
 import React from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BlogEditor from "./components/blog-editor/BlogEditor";
 
@@ -7,6 +8,7 @@ import FeaturedImageUpload from "./components/ImageUpload/FeaturedImageUpload";
 import { useBlogForm } from "./components/hooks/useBlogForm";
 
 const NewBlogUploadPage = () => {
+  const [isPublishing, setIsPublishing] = useState(false);
   const navigate = useNavigate();
   const {
     blogData,
@@ -28,6 +30,7 @@ const NewBlogUploadPage = () => {
 
     try {
       const formData = getFormData();
+      setIsPublishing(true);
 
       const response = await fetch("http://localhost:5000/api/blog/new", {
         method: "POST",
@@ -44,7 +47,7 @@ const NewBlogUploadPage = () => {
       const result = await response.json();
       console.log("Blog created:", result);
 
-      alert(`✅ Blog post published successfully!\nBlog ID: ${result.blogId}`);
+      alert(`Blog post published successfully!\nBlog ID: ${result.blogId}`);
 
       resetForm();
 
@@ -54,7 +57,9 @@ const NewBlogUploadPage = () => {
       // navigate(`/${result.blogId}`);
     } catch (error) {
       console.error("Error submitting blog:", error);
-      alert(`❌ Failed to publish blog: ${error.message}`);
+      alert(`Failed to publish blog: ${error.message}`);
+    } finally {
+      setIsPublishing(false);
     }
   };
 
@@ -162,9 +167,10 @@ const NewBlogUploadPage = () => {
             </button>
             <button
               type="submit"
-              className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-300"
+              disabled={isPublishing}
+              className="px-8 py-3 bg-gradient-to-r bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-600  transition-all duration-300"
             >
-              Publish Blog Post
+              {isPublishing ? "Publishing..." : "Publish Blog"}
             </button>
           </div>
         </form>
