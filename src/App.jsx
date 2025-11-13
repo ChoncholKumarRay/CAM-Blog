@@ -10,6 +10,7 @@ import InstructionPage from "./pages/InstructionPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import Footer from "./components/Footer";
 import BlogAdminDashboard from "./pages/admin/BlogAdminDashboard";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
       <div className="relative min-h-screen">
         <StarfieldBackground />
         <Header />
+        <Toaster position="top-right" reverseOrder={false} />
         <div className="relative z-10 min-h-screen">
           <Routes>
             <Route path="/" element={<BlogPage />} />
