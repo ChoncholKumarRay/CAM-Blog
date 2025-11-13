@@ -50,11 +50,6 @@ const NewBlogUploadPage = () => {
       alert(`Blog post published successfully!\nBlog ID: ${result.blogId}`);
 
       resetForm();
-
-      // Optional: Navigate to blog list or view
-      // navigate("/admin/dashboard");
-      // or
-      // navigate(`/${result.blogId}`);
     } catch (error) {
       console.error("Error submitting blog:", error);
       alert(`Failed to publish blog: ${error.message}`);
