@@ -18,9 +18,8 @@ export const editorExtensions = [
   }),
   Image.configure({
     inline: true,
-    allowBase64: true,
     HTMLAttributes: {
-      class: "max-w-full h-auto rounded-lg",
+      class: "max-w-[60%] h-auto rounded-lg mx-auto block",
     },
   }),
   Link.configure({

@@ -27,8 +27,13 @@ const BlogEditor = ({ content = "", onChange }) => {
     if (!editor) return;
 
     const imageHtml = caption
-      ? `<figure><img src="${src}" alt="${caption}" class="max-w-full h-auto rounded-lg" /><figcaption class="text-center text-sm text-gray-400 italic mt-2">${caption}</figcaption></figure>`
-      : `<img src="${src}" alt="Blog image" class="max-w-full h-auto rounded-lg" />`;
+      ? `<figure class="flex flex-col items-center">
+       <img src="${src}" alt="${caption}" 
+         class="max-w-[50%] h-auto rounded-lg mx-auto block" />
+       <figcaption class="text-center text-sm text-gray-400 italic mt-2">${caption}</figcaption>
+     </figure>`
+      : `<img src="${src}" alt="Blog image" 
+       class="max-w-[50%] h-auto rounded-lg mx-auto block" />`;
 
     editor.chain().focus().insertContent(imageHtml).run();
   };
